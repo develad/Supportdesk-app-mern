@@ -73,6 +73,27 @@ const loginUser = asyncHandler(async (req, res) => {
   //   res.send("Login Route");
 });
 
+// @desc    Get current user
+// @route   /api/users/me
+// @access  Private
+// Get current user
+
+const getMe = asyncHandler(async (req, res) => {
+  // res.send("me");
+  // const { _id, name, email } = req.user;
+  // res.status(200).json({
+  //   id: _id,
+  //   name,
+  //   email,
+  // });
+  const user = {
+    id: req.user._id,
+    name: req.user.name,
+    email: req.user.email,
+  };
+  res.status(200).json(user);
+});
+
 // Generate token
 const generateToken = (id) => {
   // putting an object of id. ex:{"id":"63dad8a3cf28d1e655f44f95"}
@@ -82,6 +103,7 @@ const generateToken = (id) => {
 module.exports = {
   registerUser,
   loginUser,
+  getMe,
 };
 
 // You can only return one response at a time from any Express route handler / controller.
