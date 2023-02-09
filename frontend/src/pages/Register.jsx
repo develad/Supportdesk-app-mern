@@ -120,3 +120,24 @@ function Register() {
 }
 
 export default Register;
+
+// Other way to dispatch
+// const userData = {
+//   name,
+//   email,
+//   password,
+// }
+
+// dispatch(register(userData))
+// you could do...
+
+// dispatch(register({
+//   name,
+//   email,
+//   password,
+// }))
+// or
+
+// const { password2, ...rest } = formData
+
+// dispatch( register({ ...rest })
