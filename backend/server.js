@@ -22,6 +22,7 @@ app.get("/", (req, res) => {
 
 // Routes
 app.use("/api/users", require("./routes/userRoutes"));
+app.use("/api/tickets", require("./routes/ticketRoutes"));
 
 // The error middleware is the last middleware that run in the app if we dont use the defualt build in error handler in express
 app.use(errorHandler);
