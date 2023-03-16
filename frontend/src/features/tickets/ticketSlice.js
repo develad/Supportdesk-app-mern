@@ -10,6 +10,27 @@ const initialState = {
   message: "",
 };
 
+// Create new ticket
+export const createTicket = createAsyncThunk(
+  "tickets/create",
+  async (ticketData, thunkAPI) => {
+    try {
+      // With the thunkAPI we have access to all of the state in the different slices
+      const token = thunkAPI.getState().auth.user.token;
+      return await ticketService.createTicket(ticketData, token);
+    } catch (error) {
+      const message =
+        (error.response &&
+          error.response.data &&
+          error.response.data.message) ||
+        error.message ||
+        error.toString();
+
+      return thunkAPI.rejectWithValue(message);
+    }
+  },
+);
+
 export const ticketSlice = createSlice({
   name: "ticket",
   initialState,
@@ -17,7 +38,22 @@ export const ticketSlice = createSlice({
     reset: (state) => initialState,
   },
 
-  extraReducers: (builder) => {},
+  extraReducers: (builder) => {
+    builder
+      .addCase(createTicket.pending, (state) => {
+        state.isLoading = true;
+      })
+      .addCase(createTicket.fulfilled, (state) => {
+        state.isLoading = false;
+        state.isSuccess = true;
+      })
+      .addCase(createTicket.rejected, (state, action) => {
+        state.isLoading = false;
+        state.isError = true;
+        // The message is coming from the return thunkAPI.rejectWithValue(message) in the catch clause
+        state.message = action.payload;
+      });
+  },
 });
 
 export const { reset } = ticketSlice.actions;
