@@ -9,7 +9,7 @@ export const useAuthStatus = () => {
 
   // Same name as in the store , destructuring the user
   const { user } = useSelector((state) => state.auth);
-  console.log(user);
+  // console.log(user);
 
   // We want the useEffect will run every time the user changes
   useEffect(() => {
