@@ -6,6 +6,7 @@ import Login from "./pages/Login";
 import Register from "./pages/Register";
 import NewTicket from "./pages/NewTicket";
 import Tickets from "./pages/Tickets";
+import Ticket from "./pages/Ticket";
 import { PrivateRoute } from "./components/PrivateRoute";
 
 import { Flip, ToastContainer } from "react-toastify";
@@ -53,6 +54,19 @@ function App() {
               <Route
                 path="/tickets"
                 element={<Tickets />}
+              />
+            </Route>
+            {/* ****************************************/}
+            {/****************************************
+              Private route
+              The URL of the outlet is the same!       */}
+            <Route
+              path="/ticket/:ticketId"
+              element={<PrivateRoute />}
+            >
+              <Route
+                path="/ticket/:ticketId"
+                element={<Ticket />}
               />
             </Route>
             {/* ****************************************/}
