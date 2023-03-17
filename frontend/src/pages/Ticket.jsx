@@ -5,7 +5,6 @@ import BackButton from "../components/BackButton";
 import Spinner from "../components/Spinner";
 import { useParams } from "react-router-dom";
 import { toast } from "react-toastify";
-import { format } from "date-fns";
 
 function Ticket() {
   const { ticket, isLoading, isSuccess, isError, message } = useSelector(
@@ -45,9 +44,7 @@ function Ticket() {
           </span>
         </h2>
         <h3>
-          {/* Date Submitted: {new Date(ticket.createdAt).toLocaleString("en-US")} */}
-          Date Submitted:{" "}
-          {format(new Date(ticket.createdAt), "dd.MM.yyyy | HH:mm")}
+          Date Submitted: {new Date(ticket.createdAt).toLocaleString("he-IL")}
         </h3>
         <hr />
         <div className="ticket-desc">
