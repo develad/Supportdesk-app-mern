@@ -6,7 +6,7 @@ function TicketItem({ ticket }) {
   return (
     <div className="ticket">
       {/* <div>{new Date(ticket.createdAt).toLocaleString("en-US")}</div> */}
-      <div>{format(new Date(ticket.createdAt), "dd.MM.yyyy | HH:mm")}</div>
+      <div>{format(new Date(ticket.createdAt), "PPPPp")}</div>
       <div>{ticket.product}</div>
       <div className={`status status-${ticket.status}`}>{ticket.status}</div>
       <Link
