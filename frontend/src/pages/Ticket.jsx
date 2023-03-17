@@ -5,6 +5,7 @@ import BackButton from "../components/BackButton";
 import Spinner from "../components/Spinner";
 import { useParams } from "react-router-dom";
 import { toast } from "react-toastify";
+import { format } from "date-fns";
 
 function Ticket() {
   const { ticket, isLoading, isSuccess, isError, message } = useSelector(
@@ -15,7 +16,7 @@ function Ticket() {
 
   //   console.log(params);
   const { ticketId } = useParams();
-  console.log(ticketId);
+  //   console.log(ticketId);
 
   useEffect(() => {
     if (isError) {
@@ -24,6 +25,8 @@ function Ticket() {
     dispatch(getTicket(ticketId));
     //eslint-disable-next-line
   }, [isError, message, ticketId]);
+
+  //   console.log(ticket.createdAt);
 
   if (isLoading) {
     return <Spinner />;
@@ -44,7 +47,11 @@ function Ticket() {
           </span>
         </h2>
         <h3>
-          Date Submitted: {new Date(ticket.createdAt).toLocaleString("he-IL")}
+          {/* Date Submitted: {new Date(ticket.createdAt).toLocaleString("he-IL")} */}
+          Date Submitted:{" "}
+          {ticket.createdAt
+            ? format(new Date(ticket.createdAt), "dd.MM.yyyy | HH:mm")
+            : ""}
         </h3>
         <hr />
         <div className="ticket-desc">
