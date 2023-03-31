@@ -10,7 +10,11 @@ import { useParams, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import { format } from "date-fns";
 
-import { getNotes, reset as noteReset } from "../features/notes/noteSlice";
+import {
+  getNotes,
+  createNote,
+  reset as noteReset,
+} from "../features/notes/noteSlice";
 
 const customStyles = {
   content: {
@@ -69,7 +73,9 @@ function Ticket() {
   // Create note submit
   const onNoteSubmit = (e) => {
     e.preventDefault();
-    console.log(noteText);
+    // console.log(noteText);
+    // CreateNote function Takes in an object
+    dispatch(createNote({ noteText, ticketId }));
     setNoteText("");
     closeModal();
   };
