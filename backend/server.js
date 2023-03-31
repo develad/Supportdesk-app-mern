@@ -38,4 +38,8 @@ if (process.env.NODE_ENV === "production") {
 // The error middleware is the last middleware that run in the app if we dont use the defualt build in error handler in express
 app.use(errorHandler);
 
-app.listen(PORT, () => console.log(`Server started on port ${PORT}`));
+connectDB().then(() => {
+  app.listen(PORT, () => {
+    console.log(`server listen on port ${PORT}`);
+  });
+});
